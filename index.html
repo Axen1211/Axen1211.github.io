@@ -1,11 +1,451 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+
+    .container {
+        width: 100%;
+        max-width: 1140px;
+        margin: 0 auto;
+
+    }
+
+    #nav {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        
+    }
+
+    #nav .sidebar {
+        width: 50px;
+        height: 100%;
+        background-color: #233320;
+        position: fixed;
+    }
+
+
+    .sidebar .sidebarup {
+        width: 50px;
+        height: 200px;
+        background-color: chartreuse;
+        padding-top: 15px;
+    }
+
+    .sidebarup:hover {
+        background-color: #999;
+        cursor: pointer;
+        transition: 1s;
+    }
+
+    .sidebarup_icon {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: auto;
+        margin-top: 5px;
+    }
+
+    #nav .banner {
+        position: absolute;
+        right: 0;
+        width: calc(100% - 50px);
+        /* z-index:  */
+        height: 100%;
+        background-color: darkgray;
+        background-position: center;
+        background-size: cover;
+        background-image: url(img/banner/garden-274534.jpg);
+        background-attachment: fixed;
+    }
+
+
+    .banner .logo {
+        width: 300px;
+        height: 75px;
+        margin: 15px 15px;
+        position: fixed;
+        right: 50px;
+        z-index: 100;
+    }
+
+    #bottom {
+        background-color: #233320;
+        width: calc(100% - 50px);
+        padding: 20px 0;
+        
+
+
+
+    }
+
+
+    #bottom p {
+        font-size: 40px;
+        color: blanchedalmond;
+        margin: 0;
+        font-family: "微軟正黑體";
+        line-height: 1.5;
+        width: 70%;
+    }
+
+
+    #picture {
+        width: calc(100% - 50px);
+        height: 100%;
+        /* background-color: darkgray; */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        background-image: url(img/news底圖/2.png);
+        background-position:center;
+        background-size: cover;
+    }
+
+    #picture .img {
+        width: calc((100% - 100px)/4);
+        border: solid white 1px;
+        height: 516.5px;
+        margin: 20px 6px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .imgp {
+        width: 440.25px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: aliceblue;
+        transform: translateY(500%);
+        text-align: center;
+        opacity: 0;
+        z-index: 99;
+    }
+
+    .imgp:hover {
+        opacity: 1;
+
+    }
+
+    .img img {
+        height: 100%;
+        overflow: hidden;
+
+    }
+
+    .imgfor:hover {
+        filter: brightness(0.5);
+        transform: scale(1.05);
+        transition: 1s;
+        opacity: 1;
+    }
+
+
+
+    #about {
+        width: calc(100% - 50px);
+        background-color: whitesmoke;
+    }
+
+    .about_h1 {
+        margin-top: 50px;
+    }
+
+    .head {
+        width: 150px;
+        height: 200px;
+        border: solid black 1px;
+        margin-bottom: 50px
+    }
+
+    .text_p {
+        width: 350px;
+        margin-left: 200px;
+        text-align: justify;
+    }
+
+
+
+    #news {
+        background-color: #777;
+        width: calc(100% - 50px);
+        height: 1000px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: end;
+    }
+
+    .swiper-container {
+        width: 100%;
+        height: 50%;
+        background-color: aliceblue;
+        margin: 0;
+    }
+
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+    }
+
+    .newspp {
+        width: 100%;
+        background-image: url('img/news底圖/1.png');
+        background-position: center;
+
+    }
+
+    .span_p {
+        font-size: 50px;
+    }
+
+    .news_p p {
+        line-height: 1.2;
+        margin: 50px 20px;
+    }
+
+    #footer {
+        width: calc(100% - 50px);
+        background-color: #999;
+
+    }
+
+    .rwd-map {
+        width: 450px;
+        height: 300px;
+        background-color: turquoise;
+        margin-top: 20px;
+
+    }
+
+    .footer_h2 {
+        margin-top: 50px;
+        letter-spacing: 8.5px;
+        margin: 0;
+    }
+
+    .footer_m {
+        margin-top: 50px;
+    }
+
+    .footer_p {
+        margin: 0;
+    }
+</style>
+
 <body>
-    Hello
+    <div id="nav">
+        <div class="sidebar">
+            <div class="sidebarup openbtn sidebaropen" onclick="openNav()">
+                <div class="sidebarup_icon"></div>
+                <div class="sidebarup_icon"></div>
+                <div class="sidebarup_icon"></div>
+            </div>
+            <div class="sidebardown sidebaropen"></div>
+        </div>
+        <div class="banner">
+            <a href="#nav"></a>
+            <div class="logo">
+                <img src="img/logo.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div id="bottom">
+        <div class="container">
+            <p class="bottom_p">大地工房設計專注於
+                心理感知與視覺經驗相容的優質園藝環境
+                原創概念及設計整合是我們的定位。</p>
+        </div>
+    </div>
+
+    <div id="picture">
+        <div class="img imgho ">
+            <div>
+                <span class="imgp">國家藝術園區</span>
+            </div>
+            <img src="img/國家藝術園區/2018121881199.jpg" class="imgfor" alt="">
+
+        </div>
+        <div class="img imgho">
+            <div>
+                <span class="imgp">國家藝術園區</span>
+            </div>
+            <img src="img/莊公館庭院/2018122185906.jpg" class="imgfor" alt="">
+        </div>
+     
+        <div class="img imgho">
+            <div>
+                <span class="imgp">國家藝術園區</span>
+            </div>
+            <img src="img/提納斯廚房/2018121887534.jpg" class="imgfor" alt="">
+        </div>
+     
+        <div class="img imgho">
+            <div>
+                <span class="imgp">國家藝術園區</span>
+            </div>
+            <img src="img/新市政余公館/2018121880657.jpg" class="imgfor" style="width: 500px;" alt="">
+        </div>
+        
+        <div class="img imgho">
+            <div>
+                <span class="imgp">國家藝術園區</span>
+            </div>
+            <img src="img/新竹市政府露臺/2018122183417.jpg" class="imgfor" alt="">
+        </div>
+  
+        <div class="img imgho">
+            <div>
+                <span class="imgp">國家藝術園區</span>
+            </div>
+            <img src="img/新竹動物園食物森林/2020042383883.jpg" class="imgfor" alt="">
+        </div>
+    
+        <div class="img imgho">
+            <div>
+                <span class="imgp">國家藝術園區</span>
+            </div>
+            <img src="img/魏公館/2018122195783.jpg" class="imgfor" alt="">
+        </div>
+      
+        <div class="img imgho">
+            <div>
+                <span class="imgp">國家藝術園區</span>
+            </div>
+            <img src="img/麗緻天尊/2018122180792.jpg" class="imgfor" alt="">
+        </div>
+    </div>
+    
+    <div id="bottom">
+        <div class="container">
+            <p class="bottom_p">大地工房設計專注於
+                心理感知與視覺經驗相容的優質園藝環境
+                原創概念及設計整合是我們的定位。</p>
+        </div>
+    </div>
+
+    <div id="about">
+        <div class="container">
+            <h1 class="about_h1">設計理念</h1>
+            <hr style="width:50%;text-align:left;margin-left:0" />
+            <p>- 空間是個儲存生活點滴的容器<br />
+                - 本身的建構過程，需要專業工程團隊努力合作才能完成<br />
+                - 最後注入靈魂，賦予容器生命的是使用者的生活痕跡<br />
+                - 在發想出具像型體的過程，需要與使用者(業主)不斷討論使用機能，生活習慣與<br />
+                &nbsp;&nbsp;喜好後而形塑出來(形隨機能)</p>
+            <h1 class="about_h1">服務項目</h1>
+            <hr style="width:50%;text-align:left;margin-left:0" />
+            <p>- 商空綠化設計<br />
+                - 家居綠化設計<br />
+                - 寺廟綠化設計<br />
+                - 各式花園管理．修剪．除蟲</p>
+            <h1 class="about_h1">創辦人</h1>
+            <hr style="width:50%;text-align:left;margin-left:0" />
+            <div class="head">
+                <p class="text_p">我們認真看待每個案子，總是以最高標準在要求內部設計作業以及工程的施工品質，目的在能交付業主一個盡善盡美的使用空間！</p>
+            </div>
+
+
+        </div>
+    </div>
+    <div id="news">
+        <!-- <div class="news_img"></div> -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image:url(./img/國家藝術園區/2018121881199.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(./img/國家藝術園區/2018121888114.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(./img/國家藝術園區/2018121888679.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(./img/國家藝術園區/2018121888679.jpg)"></div>
+                <div class="swiper-slide" style="background-image:url(./img/國家藝術園區/2018121888679.jpg)"></div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination swiper-pagination-white"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next swiper-button-white"></div>
+            <div class="swiper-button-prev swiper-button-white"></div>
+        </div>
+        <div class="newspp">
+            <div class="container">
+                <div class="news_p">
+                    <p>農業．養殖 | 花卉．園藝<br />
+                        <span class="span_p">2020年亞洲國際園藝、花卉暨種植技術展</span><br />
+                        HORTI ASIA 2020（兩年一展），原展期 2020/05/07 - 2020/05/09，因武漢肺炎疫情延期至 2020/10/14 - 2020/10/16。</p>
+                    <p>農業．養殖 | 花卉．園藝<br />
+                        <span class="span_p">2020年東京國際園藝展</span><br />
+                        GORDEN Japan 2020（兩年一展），原展期 2020/05/07 - 2020/05/09，因武漢肺炎疫情延期至 2020/10/14 - 2020/10/16。</p>
+                    <p>農業．養殖 | 花卉．園藝<br />
+                        <span class="span_p">2020年上海國際園林景觀產業博覽會</span><br />
+                        Greenery & Langscaping China 2020（兩年一展），原展期 2020/05/07 - 2020/05/09，因武漢肺炎疫情延期至 2020/10/14 -
+                        2020/10/16。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="footer">
+        <div class="container">
+            <h2 class="footer_h2 footer_m">大地工房設計有限公司</h2>
+            <p class="footer_p">EARTH GARDENING DESIGN CONSUTANTS</p>
+            <p>24947 新北市八里區中華路一段272號<br />
+                T－04.2258.2220<br />
+                F－04.2258.2270<br />
+                e.design@livemail.tw</p>
+            <div class="rwd-map">
+            </div>
+            <h2 class="footer_h2 footer_m">聯絡我們</h2>
+
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+
+    <script>
+        function openNav() {
+            document.querySelector(".sidebarup").style.width = "250px";
+            // console.log(openNav);
+
+        }
+        // function closeNav() {
+        //     document.querySelectorAll(".sidebar").style.width = "0";
+        // }
+
+
+
+        //news swiper 效果
+        var swiper = new Swiper('.swiper-container', {
+            spaceBetween: 30,
+            effect: 'fade',
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
 </body>
+
 </html>
